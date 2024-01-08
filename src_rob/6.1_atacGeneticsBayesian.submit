@@ -1,0 +1,37 @@
+#!/bin/bash
+
+regressOut="T"
+geneticsPCutoff="0"
+atacPCutoff="0"
+arrayNrToRun=100
+nrOfVars=50
+
+for seedSel in {1..5}
+do
+	for dataTypeSel in cytoData.good.log2 circMarkerData.log2 cytoData.good.fcCorr
+	do
+	
+		if [[ $dataTypeSel == "cytoData.good.log2" ]]
+		then
+			timePoints=("V1")
+			nrJobs=28
+		elif [[ $dataTypeSel == "circMarkerData.log2" ]]
+		then
+			timePoints=("V1")
+			nrJobs=73
+		elif [[ $dataTypeSel == "cytoData.good.fcCorr" ]]
+		then
+			timePoints=("V2" "V3")
+			nrJobs=28
+		fi
+	
+		for timePoint in ${timePoints[@]}
+		do
+			echo "sbatch --job-name='bayes_${dataTypeSel}_${timePoint}_${seedSel}' --array=1-${nrJobs}%${arrayNrToRun} 300bcg_atacGeneticsBayesian.batch $dataTypeSel $timePoint $seedSel 1000000 900000 T T F T 50 0 0"
+			sbatch --job-name='bayes_${dataTypeSel}_${timePoint}_${seedSel}' --array=1-${nrJobs}%${arrayNrToRun} 300bcg_atacGeneticsBayesian.batch $dataTypeSel $timePoint $seedSel 1000000 900000 T T F T 50 0 0
+		done
+	done
+done
+
+
+

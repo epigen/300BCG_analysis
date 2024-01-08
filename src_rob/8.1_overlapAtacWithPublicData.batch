@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH --partition shortq
+#SBATCH --qos shortq
+#SBATCH --nodes 1
+#SBATCH --ntasks-per-node 1
+#SBATCH --mem-per-cpu 12G
+#SBATCH --time 12:00:00
+#SBATCH --output /nobackup/lab_bock/projects/300BCG/SNP/logFiles/overlapWithPublicDataCalc.log
+
+#source /nobackup/lab_bock/users/rterhorst/miniconda3/etc/profile.d/conda.sh
+conda activate 300bcg_main
+
+echo "script name="$scriptName
+echo "metadataNameOtherData"=$metadataNameOtherData
+echo "comparisonSel"=$comparisonSel
+echo "otherDataRowIndex"=$otherDataRowIndex
+
+
+Rscript $scriptName $metadataNameOtherData $comparisonSel $otherDataRowIndex

@@ -1,0 +1,4 @@
+sbatch --job-name='convertVcfToDosages' \
+--array=1-22%22 \
+--error='../logFiles/convertToDosageOutput_chr%a.err' \
+2.3_convertVcfToDosages.batch

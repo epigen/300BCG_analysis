@@ -1,0 +1,53 @@
+name: 300bcg_rob
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - r-hash
+  - r-stringi
+  - zlib
+  - r-bedmatrix
+  - bedtools
+  - r-ggplot2
+  - jupyterlab
+  - r-dplyr
+  - r-extrafont
+  - bcftools
+  - r-openxlsx
+  - r-r.utils
+  - r-egg
+  - libstdcxx-ng
+  - r-irkernel
+  - r-igraph
+  - r-cairo
+  - r-ggrepel
+  - r-essentials
+  - r-stringr
+  - r-rfast
+  - r-base
+  - r-matrixeqtl
+  - xz
+  - r-dummies
+  - bioconductor-lola
+  - tabix
+  - vcftools
+  - r-config
+  - r-rcppeigen
+  - bioconductor-gpart
+  - r-ggrastr
+  - r-janitor
+  - r-vcfr
+  - openpyxl
+  - r-devtools
+  - r-showtext
+  - r-chron
+  - ca-certificates
+  - certifi
+  - openssl
+  - bioconductor-snpstats
+  - bioconductor-org.hs.eg.db
+  - bioconductor-ensdb.hsapiens.v75
+  - bioconductor-ensdb.hsapiens.v86
+  - bioconductor-variantannotation
+prefix: /nobackup/lab_bock/users/rterhorst/miniconda3/envs/300bcg_rob

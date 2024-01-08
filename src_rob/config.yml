@@ -1,0 +1,22 @@
+default:
+  src_dir: "./"
+
+###Please change the folders below to match your system!
+300bcg:
+  src_dir: "./"
+  metaDataFolder: "../metadata/" #set the folder that contains relevant metadata for all metadata and the gene sets
+  filePathGeneSets: "../metadata/gene_set_libraries/"
+  allMetaDataPath: "../metadata/complete_metadata.corrected.csv"#"complete_metadata.corrected.csv" #set path to metadata (complete_metadata.corrected.csv) 
+  genetics_save_dir: "../../300BCG/SNP/" #set path of the genetics savedir "/nobackup/lab_bock/projects/300BCG/SNP"
+  pascalOutputFolder: "../../PASCAL/output/" #OUTPUT where PASCAL is saved
+  x1000GenomesFolder: "../../Resources/1000G/" #"/300BCG/1000G/" #directory for 1000G data
+  x300bcgGeneticsFolder: "../../Resources/300bcg_genetics"# "" #directory for processed 300BCG genetics data
+  resourceDir: "../../Resources/"# "/300BCG/resources/" #directory that contains some resources 
+  plinkExecutable: "" #Directory that contains PLINK executable file
+  suppTableDir: "../../300BCG/suppTables/"# "/300BCG/suppTables/" #
+  image_dir_300BCG: "../../300BCG/figures/"#"/300BCG/figures/" #
+  data_dir_300BCG: "../../300BCG/results/"#"/300BCG/results/" #
+  peakInfoFile: "../metadata/peaks_filtered_PBMC.csv.gz"
+  folderWithBaselineAtacResults: "../../300BCG/results/DE/V1_cyto_CM_ATAC_limma/"
+  folderWithTrainingAtacResults: "../../300BCG/results/DE/V1_cyto_CM_fold_change_ATAC_limma/"
+  folderPeaksExpanded: "../../300BCG/results/genetics/peaksExpandedWithHaplotypeBlocks/"

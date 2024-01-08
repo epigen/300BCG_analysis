@@ -1,0 +1,4 @@
+#!/bin/bash
+sbatch --job-name='createHaplotypes' \
+--array=1-22%22 \
+300bcg_createHaplotypeBlocks.batch

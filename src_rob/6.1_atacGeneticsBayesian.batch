@@ -1,0 +1,26 @@
+#!/bin/bash
+#SBATCH --partition shortq
+#SBATCH --qos shortq
+#SBATCH --mem-per-cpu 20G
+#SBATCH --time 8:00:00
+#SBATCH --output /nobackup/lab_bock/projects/300BCG/SNP/logFiles/bayesian_%J.log
+
+conda activate 300bcg_main
+
+dataTypeSel=${1}
+timePointSel=${2}
+seedSel=${3}
+maxIter=${4}
+burnIn=${5}
+regressOutOfAtac=${6}
+regressOutOfCells=${7}
+regressOutOfY=${8}
+filterTopHits=${9}
+topNrHits=${10}
+atacPCutoff=${11}
+geneticsPCutoff=${12}
+
+factorIndex=${SLURM_ARRAY_TASK_ID}
+echo "factorIndex"=${factorIndex}
+
+Rscript 300bcg_atacGeneticsBayesian.R $dataTypeSel $timePointSel $seedSel $maxIter $burnIn $regressOutOfAtac $regressOutOfCells $regressOutOfY $filterTopHits $topNrHits ${atacPCutoff} ${geneticsPCutoff} $factorIndex

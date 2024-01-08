@@ -1,0 +1,53 @@
+#!/bin/bash
+#SBATCH --partition shortq
+#SBATCH --qos shortq
+#SBATCH --nodes 1
+#SBATCH --ntasks-per-node 1
+#SBATCH --mem-per-cpu 24G
+#SBATCH --time 12:00:00
+#SBATCH --output /nobackup/lab_bock/projects/300BCG/SNP/logFiles/pathwayPascal_%J.log
+
+#source /nobackup/lab_bock/users/rterhorst/miniconda3/etc/profile.d/conda.sh
+conda activate 300bcg_main
+
+combiIndex=${SLURM_ARRAY_TASK_ID}
+
+echo "outsuffix="${outsuffix}
+echo "combiIndex="${combiIndex}
+echo "fileWithCombis="${fileWithCombis}
+echo "runPathwayEnrichment="${runPathwayEnrichment}
+echo ${inputFolderPascal}
+
+#Get nth line of file
+combiLine=`sed "${combiIndex}q;d" ${fileWithCombis}`
+
+#Set each of the variables
+geneSet=`echo ${combiLine} | awk '{print $1;}'`
+genescoring=`echo ${combiLine} | awk '{print $2;}'`
+cytokineSel=`echo ${combiLine} | awk '{print $3;}'`
+inputFilePascal=${inputFolderPascal}"/"${cytokineSel}"_pascal.tdf"
+
+filePathGeneSets="/home/rterHorst/projects/300BCG/metadata/gene_set_libraries/"
+genesetfile=${filePathGeneSets}/${geneSet}"_entrez.gmt"
+outsuffixExtended=${outsuffix}"__"${geneSet}
+
+#Go to the folder with Pascal in it (define your own folder here.)
+cd /home/rterHorst/resources/PASCAL
+
+if [[ $runPathwayEnrichment == "off" ]]
+then
+
+	#Run the actual script
+	bash Pascal \
+	--pval ${inputFilePascal} --up 50000 --down 50000 \
+	--genescoring ${genescoring} --outsuffix ${outsuffixExtended} --runpathway=${runPathwayEnrichment}
+
+else
+  
+	#Run the actual script
+	bash Pascal \
+	--pval ${inputFilePascal} --up 50000 --down 50000 \
+	--genescoring ${genescoring} --outsuffix ${outsuffixExtended} --runpathway=${runPathwayEnrichment} \
+	--genesetfile ${genesetfile}
+
+fi

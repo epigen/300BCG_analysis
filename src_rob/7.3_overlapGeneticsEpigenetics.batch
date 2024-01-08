@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH --partition shortq
+#SBATCH --qos shortq
+#SBATCH --nodes 1
+#SBATCH --ntasks-per-node 1
+#SBATCH --mem-per-cpu 48G
+#SBATCH --time 12:00:00
+#SBATCH --output /nobackup/lab_bock/projects/300BCG/SNP/logFiles/combineGeneticsEpigenetics_%J.log
+
+#source  /nobackup/lab_bock/users/rterhorst/miniconda3/etc/profile.d/conda.sh
+conda activate 300bcg_main
+
+dataSetSel=$1
+timePointSel=$2
+
+Rscript 300bcg_overlapGeneticsEpigenetics.R ${dataSetSel} ${timePointSel}
